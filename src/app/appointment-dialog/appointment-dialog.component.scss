@@ -1,0 +1,48 @@
+.dialog-container {
+  padding: 30px;
+  background-color: #f9f9f9;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+  h1 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 20px;
+  }
+
+  .form-field {
+    width: 100%;
+    margin-bottom: 1rem;
+
+    mat-label {
+      font-weight: 500;
+      color: #666;
+    }
+
+    input {
+      font-size: 16px;
+    }
+  }
+
+  .actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    margin-top: 20px;
+
+    button {
+      font-size: 14px;
+      font-weight: 500;
+      color: #0e94ed;
+      border-radius: 8px;
+      padding: 8px 16px;
+      box-shadow: none;
+      text-transform: none;
+    }
+
+    .delete-button {
+      color: #e53935;
+    }
+  }
+}

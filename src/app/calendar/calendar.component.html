@@ -1,0 +1,46 @@
+<div cdkDropListGroup>
+    <div class="calendar-wrapper">
+        <app-calendar-header [viewDate]="viewDate" (goToPreviousMonth)="goToPreviousMonth()"
+            (goToNextMonth)="goToNextMonth()" (selectDate)="selectDate()"></app-calendar-header>
+
+        <table class="month-view" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    @for(day of daysOfTheWeek; track $index){
+                    <th>{{ day }}</th>
+                    }
+                </tr>
+            </thead>
+            <tbody cdkDropListGroup>
+                @for(week of weeks; track $index){
+                <tr>
+                    @for(date of week; track $index){
+                    <td cdkDropList [cdkDropListData]="(appointments$ | async) || []"
+                        (cdkDropListDropped)="drop($event, date)" [class.today]="isCurrentDay(date)"
+                        [ngStyle]="{ opacity: isCurrentMonth(date) ? '1' : '0.5' }">
+                        <div (click)="selectDate(date)" (keydown.enter)="selectDate(date)"
+                            (keydown.space)="selectDate(date)" class="cell-overlay" tabindex="0"></div>
+                        <div class="date">
+                            {{ date.getDate() }}
+                        </div>
+                        <div class="events">
+                            @for(appointment of appointments$ | async; track $index){
+                            <ng-container>
+                                @if(isSameDate(appointment.date, date)){
+                                <div [ngStyle]="{ 'background-color': appointment.color }" tabindex="0" class="event"
+                                    cdkDrag cdkDragHandle [cdkDragData]="appointment"
+                                    (click)="editAppointment(appointment, $event)">
+                                    <span>{{ appointment.title }}</span>
+                                </div>
+                                }
+                            </ng-container>
+                            }
+                        </div>
+                    </td>
+                    }
+                </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

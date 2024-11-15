@@ -1,0 +1,20 @@
+<div class="header-container">
+    <div class="header-left">
+        <button mat-icon-button (click)="onPrevious()">
+            <mat-icon>chevron_left</mat-icon>
+        </button>
+        <p class="title">
+            {{ viewDate | date : "MMMM" }}
+            <span>{{ viewDate | date : "y" }}</span>
+        </p>
+        <button mat-icon-button (click)="onNext()">
+            <mat-icon>chevron_right</mat-icon>
+        </button>
+    </div>
+    <div>
+        <button mat-raised-button class="add-appointment-btn" (click)="onSelectDate()">
+            <mat-icon>add</mat-icon>
+            Add Appointment
+        </button>
+    </div>
+</div>
